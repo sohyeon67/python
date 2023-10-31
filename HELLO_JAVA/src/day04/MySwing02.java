@@ -1,20 +1,19 @@
 package day04;
 
 import java.awt.EventQueue;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JTextField;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class MySwing01 extends JFrame {
+public class MySwing02 extends JFrame {
 
-	private JPanel pan;
+	private JPanel contentPane;
+	private JTextField tf;
 
 	/**
 	 * Launch the application.
@@ -23,44 +22,48 @@ public class MySwing01 extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MySwing01 frame = new MySwing01();
+					MySwing02 frame = new MySwing02();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
-		
-		
 	}
 
 	/**
 	 * Create the frame.
 	 */
-	public MySwing01() {
+	public MySwing02() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
-		pan = new JPanel();
-		pan.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
-		setContentPane(pan);
-		pan.setLayout(null);
-
-		JLabel lbl = new JLabel("Good Morning");
-		lbl.setBounds(101, 113, 90, 15);
-		pan.add(lbl);
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
 		
-		JButton btn = new JButton("Click");
+		tf = new JTextField();
+		tf.setText("100");
+		tf.setBounds(63, 52, 116, 21);
+		contentPane.add(tf);
+		tf.setColumns(10);
+		
+		JButton btn = new JButton("INCREASE");
 		btn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				lbl.setText("Good Evening");
+				myclick();
 			}
 		});
-		btn.setBounds(227, 109, 97, 23);
-		pan.add(btn);
-		
-		
+		btn.setBounds(215, 51, 97, 23);
+		contentPane.add(btn);
+	}
+	
+	void myclick() {
+		int num = Integer.parseInt(tf.getText());
+		num++;
+//		tf.setText(String.valueOf(num));
+		tf.setText(num+"");
 	}
 }
-
