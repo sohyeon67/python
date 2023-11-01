@@ -16,14 +16,18 @@ elif rnd > 0.33:
 else :
     com = "보"
 
-if me == com:
-    result = "비김"
-elif ((me == "가위" and com == "보") 
-        or (me == "바위" and com == "가위")
-        or (me == "보" and com == "바위")):
-    result = "이김"
-else:
-    result = "짐"
+    
+if(com == "가위" and me == "가위"): result = "비김"
+if(com == "가위" and me == "바위"): result = "이김"
+if(com == "가위" and me == "보"): result = "짐"
+
+if(com == "바위" and me == "가위"): result = "짐"
+if(com == "바위" and me == "바위"): result = "비김"
+if(com == "바위" and me == "보"): result = "이김"
+
+if(com == "보" and me == "가위"): result = "이김"
+if(com == "보" and me == "바위"): result = "짐"
+if(com == "보" and me == "보"): result = "비김"
 
 print("나:",me)
 print("컴:",com)
