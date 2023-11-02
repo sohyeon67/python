@@ -12,12 +12,14 @@ class MainClass(QMainWindow, form_class):
         self.show()
         
     def myclick(self):
-        num1 = self.te1.toPlainText()
-        inum1 = int(num1)
-        num2 = self.te2.toPlainText()
-        inum2 = int(num2)
-        result = inum1 - inum2
-        self.te3.setText(str(result))
+        n1 = self.te1.toPlainText()
+        n2 = self.te2.toPlainText()
+        
+        num1 = int(n1)
+        num2 = int(n2)
+        
+        min = num1 - num2
+        self.te3.setText(str(min))
 
 if __name__ == "__main__": 
     app = QApplication(sys.argv) 
