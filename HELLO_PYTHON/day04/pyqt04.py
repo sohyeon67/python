@@ -1,6 +1,6 @@
 import sys
-from PyQt5.QtWidgets import QApplication, QWidget, QMainWindow
-from PyQt5 import uic 
+from PyQt5 import uic
+from PyQt5.QtWidgets import QApplication, QMainWindow 
 from random import random
 
 form_class = uic.loadUiType("pyqt04.ui")[0]
