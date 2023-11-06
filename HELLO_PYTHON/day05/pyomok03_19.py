@@ -3,7 +3,7 @@ from PyQt5 import uic, QtGui, QtCore
 from PyQt5.QtWidgets import QApplication, QMainWindow  
 from PyQt5.Qt import QPixmap, QLabel, QPushButton, QMessageBox
 
-form_class = uic.loadUiType("pyomok02.ui")[0]
+form_class = uic.loadUiType("pyomok03_19.ui")[0]
 
 class MainClass(QMainWindow, form_class): 
     def __init__(self): 
@@ -11,25 +11,37 @@ class MainClass(QMainWindow, form_class):
         self.flagWb = True
         self.flagOver = False
         self.arr2D=[
-            [0,0,0,0,0, 0,0,0,0,0],
-            [0,0,0,0,0, 0,0,0,0,0],
-            [0,0,0,0,0, 0,0,0,0,0],
-            [0,0,0,0,0, 0,0,0,0,0],
-            [0,0,0,0,0, 0,0,0,0,0],
+            [0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0],
+            [0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0],
+            [0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0],
+            [0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0],
+            [0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0],
             
-            [0,0,0,0,0, 0,0,0,0,0],
-            [0,0,0,0,0, 0,0,0,0,0],
-            [0,0,0,0,0, 0,0,0,0,0],
-            [0,0,0,0,0, 0,0,0,0,0],
-            [0,0,0,0,0, 0,0,0,0,0]
+            [0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0],
+            [0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0],
+            [0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0],
+            [0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0],
+            [0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0],
+            
+            [0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0],
+            [0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0],
+            [0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0],
+            [0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0],
+            [0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0],
+            
+            [0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0],
+            [0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0],
+            [0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0],
+            [0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0],
+
         ]
         self.pb2D = []
         self.setupUi(self)
         
         
-        for i in range(10):
+        for i in range(19):
             line = []
-            for j in range(10):
+            for j in range(19):
                 pb = QPushButton("", self)
                 pb.setToolTip("{},{}".format(i,j))
                 pb.setIcon(QtGui.QIcon('0.png'))
@@ -46,16 +58,16 @@ class MainClass(QMainWindow, form_class):
     
     
     def myreset(self):
-        for i in range(10):
-            for j in range(10):
+        for i in range(19):
+            for j in range(19):
                 self.arr2D[i][j] = 0
         self.myrender()
         self.flagWb = True
         self.flagOver = False
     
     def myrender(self):
-        for i in range(10):
-            for j in range(10):
+        for i in range(19):
+            for j in range(19):
                 if self.arr2D[i][j] == 0:
                     self.pb2D[i][j].setIcon(QtGui.QIcon('0.png'))
                 if self.arr2D[i][j] == 1:
@@ -82,19 +94,20 @@ class MainClass(QMainWindow, form_class):
             
     def getDW(self, i, j, stone):
         cnt = 0
-        
-        while True:
-            i += 1
-            if i < 0:
-                return cnt
-            if j < 0:
-                return cnt
-            
-            if self.arr2D[i][j] == stone:
-                cnt += 1
-            else:
-                return cnt
-        
+        try:
+            while True:
+                i += 1
+                if i < 0:
+                    return cnt
+                if j < 0:
+                    return cnt
+                
+                if self.arr2D[i][j] == stone:
+                    cnt += 1
+                else:
+                    return cnt
+        except:
+            return cnt
         
     def getLE(self, i, j, stone):
         cnt = 0
