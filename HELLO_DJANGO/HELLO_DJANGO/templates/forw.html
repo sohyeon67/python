@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	FORW HTML<br>
+	a : {{a}}<br>
+	b : {{b}}<br>
+		{% for i in b %}
+			{{i}}
+		{% endfor %}
+	<br>
+	
+	<table border="1px">
+		<tr>
+			<th>사번</th>
+			<th>이름</th>
+			<th>성별</th>
+			<th>주소</th>
+		</tr>
+	{% for e in c %}
+		<tr>
+			<td>{{e.e_id}}</td>
+			<td>{{e.e_name}}</td>
+			<td>{{e.gen}}</td>
+			<td>{{e.addr}}</td>
+		</tr>
+	{% endfor %}
+	</table>
+</body>
+</html>
