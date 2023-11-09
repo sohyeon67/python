@@ -65,21 +65,21 @@ class DaoMem:
         self.conn.close()
 
 if __name__ == '__main__':
-    de = DaoMem()
+    dm = DaoMem()
     
-    list = de.selectList()
+    list = dm.selectList()
     print(list)
     
-    vo = de.selectOne('1')
+    vo = dm.selectOne('1')
     print(vo)
     
-    cnt = de.insert('5','5','5','5')
+    cnt = dm.insert('5','5','5','5')
     print("insert cnt", cnt)
     
-    cnt = de.update('5','6','6','6')
+    cnt = dm.update('5','6','6','6')
     print("update cnt", cnt)
     
-    cnt = de.delete('5')
+    cnt = dm.delete('5')
     print("delete cnt", cnt)
     
     
