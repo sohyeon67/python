@@ -4,17 +4,11 @@ conn = pymysql.connect(host='localhost', user='root', password='python',
                        port=3305, db='python', charset='utf8')
  
 e_id = "5"
-e_name = "6"
-gen = "6"
-addr = "6"
+
  
 curs = conn.cursor()
 sql = f"""
-        update emp
-        set
-            e_name = '{e_name}', 
-            gen = '{gen}',
-            addr = '{addr}'
+        delete from emp
         where e_id = '{e_id}'
 """
          
