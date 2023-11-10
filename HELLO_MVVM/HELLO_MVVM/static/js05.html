@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+function myclick() {
+	var spans = document.getElementsByClassName('myspan');
+	
+	var arr = [
+	    1,2,3,4,5,      6,7,8,9,10,
+	    11,12,13,14,15, 16,17,18,19,20,
+	    21,22,23,24,25, 26,27,28,29,30,
+	    31,32,33,34,35, 36,37,38,39,40,
+	    41,42,43,44,45
+	]
+	
+	for(var i=0; i<1000; i++) {
+		var rnd = parseInt(Math.random() * 45);
+		temp = arr[0];
+		arr[0] = arr[rnd];
+		arr[rnd] = temp;
+	}
+	
+	for(var i=0; i<6; i++) {
+		for(var j=0; j<6; j++) {
+			if(arr[i] < arr[j]) {
+				temp = arr[i];
+				arr[i] = arr[j];
+				arr[j] = temp;
+			}
+		}
+	}
+	
+	spans[0].innerText = arr[0];
+	spans[1].innerText = arr[1];
+	spans[2].innerText = arr[2];
+	spans[3].innerText = arr[3];
+	spans[4].innerText = arr[4];
+	spans[5].innerText = arr[5];
+	
+}
+</script>
+</head>
+<body>
+<h3>JS05</h3>
+<table border="1">
+	<tr>
+		<td><span class="myspan">__</span></td>
+		<td><span class="myspan">__</span></td>
+		<td><span class="myspan">__</span></td>
+		<td><span class="myspan">__</span></td>
+		<td><span class="myspan">__</span></td>
+		<td><span class="myspan">__</span></td>
+	</tr>
+	<tr>
+		<td colspan="6">
+			<input type="button" value="CLICK" onclick="myclick()" />
+		</td>
+	</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+input[name='ita'],input[name='itb'],input[name='itc'] {
+	width: 30px;
+}
+</style>
+<script type="text/javascript">
+function myclick() {
+	var obj_a = document.getElementsByName('ita')[0];
+	var obj_b = document.getElementsByName('itb')[0];
+	var obj_c = document.getElementsByName('itc')[0];
+	
+	var a = obj_a.value;
+	var b = obj_b.value;
+	
+	var sum = parseInt(a) + parseInt(b);
+	
+	obj_c.value = sum;
+}
+</script>
+</head>
+<body>
+<h3>JS02</h3>
+<input type="text" name="ita">
++
+<input type="text" name="itb">
+<input type="button" value="=" onclick="myclick()">
+<input type="text" name="itc">
+</body>
+</html>

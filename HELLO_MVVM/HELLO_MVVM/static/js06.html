@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+body table {
+	text-align:center;
+}
+</style>
+<script type="text/javascript">
+window.onload = function() {
+	var numBtn = document.getElementsByClassName('btn');
+	var callBtn = document.getElementsByClassName('btn_call')[0];
+	var tel = document.getElementById('it');
+	
+	var txt = "";
+	for(var i=0; i<10; i++) {
+		numBtn[i].addEventListener("click", function(event) {
+			txt += event.target.value;
+			tel.value = txt;
+		});
+	}
+	
+	callBtn.addEventListener("click", function(event) {
+		alert(tel.value + "번으로 전화를 걸었습니다");
+	});
+}
+	
+</script>
+</head>
+<body>
+<h3>JS06</h3>
+<table border="1">
+	<tr>
+		<td colspan="3">
+			<input type="text" id="it" />
+		</td>
+	</tr>
+	<tr>
+		<td><input type="button" class="btn" value="1"/></td>
+		<td><input type="button" class="btn" value="2"/></td>
+		<td><input type="button" class="btn" value="3"/></td>
+	</tr>
+	<tr>
+		<td><input type="button" class="btn" value="4"/></td>
+		<td><input type="button" class="btn" value="5"/></td>
+		<td><input type="button" class="btn" value="6"/></td>
+	</tr>
+	<tr>
+		<td><input type="button" class="btn" value="7"/></td>
+		<td><input type="button" class="btn" value="8"/></td>
+		<td><input type="button" class="btn" value="9"/></td>
+	</tr>
+	<tr>
+		<td><input type="button" class="btn" value="0"/></td>
+		<td colspan="2">
+			<input type="button" class="btn_call" value="☎"/>
+		</td>
+	</tr>
+</table>
+</body>
+</html>

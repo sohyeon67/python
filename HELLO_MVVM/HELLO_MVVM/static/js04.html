@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+#it_first, #it_last {
+	width: 30px;
+}
+#mydiv {
+	height: 200px;
+}
+</style>
+<script type="text/javascript">
+function getStar(cnt) {
+	var ret = "";
+	for(var i=0; i<cnt; i++) {
+		ret += "★";
+	}
+	ret += "<br/>";
+	return ret;
+}
+function myclick() {
+	var first = document.getElementById('it_first');
+	var last = document.getElementById('it_last');
+	var mydiv = document.getElementById('mydiv');
+	
+	var start = parseInt(first.value);
+	var end = parseInt(last.value);
+	
+	var result = "";
+	
+	for(i=start; i<=end; i++) {
+		result += getStar(i);
+	}
+	
+	mydiv.innerHTML = result;
+}
+</script>
+</head>
+<body>
+<h3>JS04</h3>
+<table border="1">
+	<tr>
+		<td>시작별수:</td>
+		<td>
+			<input type="text" id="it_first" >
+		</td>
+	</tr>
+	<tr>
+		<td>끝별수:</td>
+		<td>
+			<input type="text" id="it_last" >
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<input type="button" value="출력하기" onclick="myclick()">
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<div id="mydiv"></div>
+		</td>
+	</tr>
+</table>
+</body>
+</html>
