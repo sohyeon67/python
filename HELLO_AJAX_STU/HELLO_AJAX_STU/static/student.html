@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="jquery-3.7.1.js"></script>
+<script type="text/javascript">
+function fn_list() {
+	var param = {'s_id':1};
+	$.ajax({
+		type: 'POST',
+		url: '/selectlist.ajax',
+		data: JSON.stringify(param),
+		success: function(res){
+		    var list = res.list;
+		    setList(list);
+		}
+	});
+}
+
+function setList(list) {
+	var txt = "";
+    for(var i=0; i<list.length; i++) {
+    	var vo = list[i];
+    	var s_id = vo.s_id;
+    	var s_name = vo.s_name;
+    	var mobile = vo.mobile;
+    	var grade = vo.grade;
+    	txt += `
+    		<tr>
+				<td><a href="javascript:fn_select('${s_id}')">${s_id}</a></td>
+				<td>${s_name}</td>
+				<td>${mobile}</td>
+				<td>${grade}</td>
+			</tr>
+    	`;
+    }
+    $("#mytbody").html(txt);
+}
+
+function fn_select(s_id) {
+	var data = {'s_id':s_id};
+	$.ajax({
+		type: 'POST',
+		url: '/select.ajax',
+		data: JSON.stringify(data),
+		success: function(res){
+			var vo = res.vo;
+			$("#s_id").val(vo.s_id);
+			$("#s_name").val(vo.s_name);
+			$("#mobile").val(vo.mobile);
+			$("#grade").val(vo.grade);
+		}
+	});
+}
+
+function fn_add() {
+	var data = {
+		's_id':$("#s_id").val(),
+		's_name':$("#s_name").val(),
+		'mobile':$("#mobile").val(),
+		'grade':$("#grade").val()
+	};
+	
+	$.ajax({
+		type: 'POST',
+		url: '/insert.ajax',
+		data: JSON.stringify(data),
+		success: function(res) {
+			var cnt = res.cnt;
+			if(cnt == 1) {
+				var list = res.list;
+				setList(list);
+				$("#s_id").val("");
+				$("#s_name").val("");
+				$("#mobile").val("");
+				$("#grade").val("");
+			} else {
+				alert("추가 도중 문제가 생겼습니다.");
+			}
+		}
+	});
+}
+
+function fn_mod() {
+	var data = {
+		's_id':$("#s_id").val(),
+		's_name':$("#s_name").val(),
+		'mobile':$("#mobile").val(),
+		'grade':$("#grade").val()
+	};
+	
+	$.ajax({
+		type: 'POST',
+		url: '/update.ajax',
+		data: JSON.stringify(data),
+		success: function(res) {
+			var cnt = res.cnt;
+			if(cnt == 1) {
+				var list = res.list;
+				setList(list);
+				$("#s_id").val("");
+				$("#s_name").val("");
+				$("#mobile").val("");
+				$("#grade").val("");
+			} else {
+				alert("수정 도중 문제가 생겼습니다.");
+			}
+		}
+	});
+}
+
+function fn_del() {
+	/* var flag = confirm("한번 지워진 데이터는 복구 불가합니다. 그래도 지우시겠습니까?");
+	if(!flag) {
+		return;
+	} */
+	
+	if(confirm("한번 지워진 데이터는 복구 불가합니다. 그래도 지우시겠습니까?")) {
+		var data = {
+			's_id':$("#s_id").val(),
+		};
+			
+		$.ajax({
+			type: 'POST',
+			url: '/delete.ajax',
+			data: JSON.stringify(data),
+			success: function(res) {
+				var cnt = res.cnt;
+				if(cnt == 1) {
+					var list = res.list;
+					setList(list);
+					$("#s_id").val("");
+					$("#s_name").val("");
+					$("#mobile").val("");
+					$("#grade").val("");
+				} else {
+					alert("삭제 도중 문제가 생겼습니다.");
+				}
+			}
+		});
+	}
+}
+
+$(document).ready(function() {
+	fn_list();
+	
+	$("#add").bind("click", function(){
+		fn_insert();
+	})
+});
+</script>
+</head>
+<body>
+<h3>STUDENT HTML</h3>
+<table border="1px">
+	<thead>
+		<tr>
+			<th>학번</th>
+			<th>이름</th>
+			<th>연락처</th>
+			<th>성적</th>
+		</tr>
+	</thead>
+	<tbody id="mytbody">
+		<tr>
+			<td colspan="4">검색된 데이터가 없습니다.</td>
+		</tr>
+	</tbody>
+</table>
+
+
+<table border="1px">
+	<tr>
+		<td>학번</td>
+		<td>
+			<input type="text" id="s_id"/>
+		</td>
+	</tr>
+	<tr>
+		<td>이름</td>
+		<td>
+			<input type="text" id="s_name"/>
+		</td>
+	</tr>
+	<tr>
+		<td>연락처</td>
+		<td>
+			<input type="text" id="mobile"/>
+		</td>
+	</tr>
+	<tr>
+		<td>성적</td>
+		<td>
+			<input type="text" id="grade"/>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<input type="button" value="추가" onclick="fn_add()"/>
+			<input type="button" value="수정" onclick="fn_mod()"/>
+			<input type="button" value="삭제" onclick="fn_del()"/>
+		</td>
+	</tr>
+</table>
+</body>
+</html>
