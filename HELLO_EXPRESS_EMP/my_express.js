@@ -14,7 +14,7 @@ app.set('view engine', 'ejs');
 app.set('views', './views');
 
 app.get('/', (req, res) => {
-	res.render('emp_list');
+	res.redirect("/emp_list");
 })
 
 app.get('/emp_list', (req, res) => {
